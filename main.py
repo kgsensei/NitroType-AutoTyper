@@ -4,7 +4,7 @@ from msedge.selenium_tools import Edge, EdgeOptions
 import time
 import pyautogui as pya
 import keyboard
-webdriver_location = "./MicrosoftWebDriver.exe"
+webdriver_location = "MicrosoftWebDriver.exe"
 options = EdgeOptions()
 options.use_chromium = True
 options.binary_location=r'C:\Program Files (x86)\Microsoft\Edge Dev\Application\msedge.exe'
