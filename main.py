@@ -19,6 +19,7 @@ while True:
         typestring = []
         print('reading...')
         elements = browser.find_elements_by_class_name('dash-letter')
+        elements.pop()
         for e in elements:
             typestring.append(e.text)
         print(typestring)
