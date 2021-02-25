@@ -9,8 +9,9 @@ options.binary_location=r'C:\Program Files (x86)\Microsoft\Edge\Application\msed
 browser=Edge(options=options,executable_path=webdriver_location)
 browser.get("https://www.nitrotype.com/race")
 running=False
+keybind=input("Start typeing keybind, press on start of race: ")
 while True:
-    if keyboard.is_pressed('/') == True and running == False:
+    if keyboard.is_pressed(keybind) == True and running == False:
         runningEFE=True
         typestring=[]
         print('Reading...')
@@ -27,6 +28,6 @@ while True:
         runningEFE=False
         print("Ready!")
 
-# Account info
+# Account usernames
 # ggnore_1
 # igetitimhacking
