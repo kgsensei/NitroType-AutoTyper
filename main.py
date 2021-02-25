@@ -7,7 +7,7 @@ import keyboard
 webdriver_location = "MicrosoftWebDriver.exe"
 options = EdgeOptions()
 options.use_chromium = True
-options.binary_location=r'C:\Program Files (x86)\Microsoft\Edge Dev\Application\msedge.exe'
+options.binary_location=r'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'
 browser = Edge(options=options, executable_path=webdriver_location)
 browser.get("https://www.nitrotype.com/race")
 running = False
