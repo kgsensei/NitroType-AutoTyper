@@ -1,57 +1,108 @@
-try:
-    from selenium import webdriver
-    from selenium.webdriver.common.keys import Keys
-    from msedge.selenium_tools import Edge, EdgeOptions
-    from selenium.webdriver.common.by import By
-    import time, pyautogui as pya, keyboard, random
-except Exception:
-    import os
-    os.system("pip install selenium")
-    os.system("pip install pyautogui")
-    os.system("pip install keyboard")
-    from selenium import webdriver
-    from selenium.webdriver.common.keys import Keys
-    from msedge.selenium_tools import Edge, EdgeOptions
-    from selenium.webdriver.common.by import By
-    import time, pyautogui as pya, keyboard, random
-    
-webdriver_location="MicrosoftWebDriver.exe"
-options=EdgeOptions()
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException
+import time,keyboard,random
+import pyautogui as pya
+from fake_useragent import UserAgent
+
+def GetUA():
+    ua=UserAgent()
+    userAgent=ua.random
+    return userAgent
+
+webdriver_location="hacked_chromedriver.exe"
+options=webdriver.ChromeOptions()
 options.use_chromium=True
-options.binary_location=r'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'
-browser=Edge(options=options,executable_path=webdriver_location)
+options.binary_location=r'C:\Program Files\Google\Chrome\Application\chrome.exe'
+options.add_argument("--user-agent="+GetUA())
+options.add_argument('--disable-extensions')
+options.add_argument("--start-maximized")
+options.add_argument("--disable-plugins-discovery")
+options.add_argument('--profile-directory=Default')
+options.add_argument('--disable-blink-features=AutomationControlled')
+options.add_experimental_option('useAutomationExtension',False)
+options.add_experimental_option("excludeSwitches",["enable-automation"])
+options.add_experimental_option('excludeSwitches',['enable-logging'])
+browser=webdriver.Chrome(options=options,executable_path=webdriver_location)
+browser.delete_all_cookies()
 browser.get("https://www.nitrotype.com/race")
-running=False
+browser.execute_script("Object.defineProperty(navigator,'webdriver',{get:()=>undefined})")
+runningEFE=False
 
-keybind=input("-Start typeing keybind, press on start of race: ")
+keybind=input("-Start typing keybind, press on start of race: ")
+autotof=int(input("-Automatically play through games [1/0]: "))
 
-while True:
+def exists(classname:str):
     try:
-        # Prevent it from running two times.
-        if keyboard.is_pressed(keybind) == True and running == False:
-            runningEFE=True
+        if browser.find_element_by_css_selector(classname):
+            return True
+    except (Exception,NoSuchElementException):
+        return False
+
+if autotof==0:
+    while True:
+        try:
+            browser.execute_script("let items=document.getElementsByClassName('ad');for(let i=0;i<items.length;i++){items[i].remove()}")
+            if keyboard.is_pressed(keybind)==True and runningEFE==False and browser.current_url=="https://www.nitrotype.com/race":
+                runningEFE=True
+                newtype=""
+                typestring=[]
+                print('-Waiting...')
+                if exists('.dash-letter')==False:
+                    wait=WebDriverWait(browser,20)
+                    wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,'.dash-letter')))
+                elements=browser.find_elements_by_class_name('dash-letter')
+                elements.pop()
+                print('-Reading...')
+                for e in elements:
+                    text=e.get_attribute("textContent")
+                    if "\xa0" in text:
+                        text=str(text).replace("\xa0"," ")
+                    typestring.append(text)
+                for c in typestring:
+                    newtype=newtype+str(c)
+                if exists('.is-retracting'):
+                    wait=WebDriverWait(browser,10)
+                    wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,'.is-retracting')))
+                    time.sleep(3)
+                print("-Working...")
+                pya.write(newtype,interval=0.0441)
+                print("-Finished...")
+                runningEFE=False
+        except Exception as e:
+            print("-Error: "+str(e))
+else:
+    while True:
+        try:
+            browser.execute_script("let items=document.getElementsByClassName('ad');for(let i=0;i<items.length;i++){items[i].remove()}")
             newtype=""
             typestring=[]
-            print('-Reading...')
+            print('-Waiting...')
+            if exists('.dash-letter')==False:
+                wait=WebDriverWait(browser,20)
+                wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,'.dash-letter')))
             elements=browser.find_elements_by_class_name('dash-letter')
-            # Remove invalid character at finish.
             elements.pop()
-            print("-Typing...")
+            print('-Reading...')
             for e in elements:
-                # Get text of hidden and visible items.
                 text=e.get_attribute("textContent")
                 if "\xa0" in text:
                     text=str(text).replace("\xa0"," ")
                 typestring.append(text)
-            # Type characters found in search. [Make browser only]
             for c in typestring:
                 newtype=newtype+str(c)
-            time.sleep(0.75)
-            pya.write(newtype, interval=0.05)
-            # Allow it to run again.
-            runningEFE=False
-            print("-Ready!")
-    except Exception:
-        print("-Error occured...")
-
-# Don't set words per minute up or you will be banned, I've gone through 5 accounts now.
+            if exists('.is-retracting'):
+                wait=WebDriverWait(browser,10)
+                wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,'.is-retracting')))
+                time.sleep(3)
+            print("-Working...")
+            pya.write(newtype,interval=0.0441)
+            print("-Finished...")
+            time.sleep(5)
+            browser.execute_script("window.location.reload()")
+            time.sleep(5)
+        except Exception as e:
+            print("-Error: "+str(e))
