@@ -1,33 +1,49 @@
-# NitroType-AutoTyper
-NitroType Hack for typing. ~200 WPM and ~100% Acc. Tested only on windows so far. This was developed for educational and experimental reasons only, if you want to use it for more that is your own choice. I am not responsible for what you do with this project in any way.
+# NitroType Auto Typer
+### By: kgsensei
+NitroType Hack for typing. ~220 WPM and ~100% Acc. Tested only on windows but  
+should work on most platforms. This was developed for educational and  
+experimental reasons only, if you want to use it for more that is your own  
+choice. I am not responsible for what you do with this project in any way.
 
-# How To Use
-To use you must download the main python file.
-After downloading the file of your choice you must get the latest edge or chrome web driver, links below:
+## Features
+- Anti-bot detection [Stealthy Bot]
+  - A little while ago NitroType added selenium bot  
+  detection which made this bot useless, after some  
+  work I figured out some methods to make sure you  
+  go completely undetected, the only issue is that  
+  this may have an effect on user experience.
+- NitroType auto typer
+  - This will detect the letters to type and type  
+  them at an accepted level, so as not to be banned.
+- NitroType race grinder
+  - This just goes through as many races as it can  
+  automatically with zero human input, may be  
+  a little buggy still but nothing you can't fix.
+- Ad blocker
+  - When working on the stealth features to evade  
+  bot detection I realized how annoying the ads are  
+  on NitroType, so I added a bit of code to remove  
+  most ads from the website while your using my cheat.
 
-[Edge WebDriver Download](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)
+## How to Use
+To use you must download the main python file. After downloading the file of  
+your choice you must get the latest chrome web driver, link below:
+
+*Please Note: The hacked chromedriver file in GitHub was modified to prevent selenium bot  
+detection, if you download a clean copy of the chrome driver there is a chance  
+your account will be banned for using a bot.*
 
 [Chrome WebDriver Download](https://sites.google.com/a/chromium.org/chromedriver/downloads)
 
-You must move the web driver exe file into the same folder as the python file, You also need to update the name of the driver inside the python file like so:
-```
+You must move the web driver exe file into the same folder as the python file,  
+You also need to update the name of the driver inside the python file like so:
+```py
 webdriver_location="<exe_file_name_here>"
 ```
 
-If you are using chrome instead of edge you also need to change the following lines from:
-```
-options=EdgeOptions()
-options.use_chromium=True
-options.binary_location=r'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'
-browser=Edge(options=options,executable_path=webdriver_location)
-```
-To:
-```
-options=webdriver.ChromeOptions()
-options.use_chromium=True
-options.binary_location=r'C:\Program Files\Google\Chrome\Application\chrome.exe'
-browser=webdriver.Chrome(options=options,executable_path=webdriver_location)
-```
+## If You Want to Copy
+I'm not going to be upset if you copy my code, its open source for a reason.  
+Just give credit where its desired. Don't copy if your not going to change  
+anything, there isn't a point in doing that.
 
-# If You Want To Copy
-I'm not going to be upset if you copy my code, its open source for a reason. Just give credit where its desired. If you want to work together on a project feel free to reach out to me. I'm often bored and looking for a project.
+#### Copyright (c) 2021 kgsensei.
