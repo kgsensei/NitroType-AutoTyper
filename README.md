@@ -46,4 +46,4 @@ I'm not going to be upset if you copy my code, its open source for a reason.
 Just give credit where its desired. Don't copy if your not going to change  
 anything, there isn't a point in doing that.
 
-#### Copyright (c) 2021 kgsensei.
+#### Copyright &copy; kgsensei 2022.
