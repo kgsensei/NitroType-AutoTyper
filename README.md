@@ -1,5 +1,10 @@
 # NitroType Auto Typer
 ### By: kgsensei
+
+### :warning: *I recommend instead of using this project you use the updated, easier-to-use version [here](https://github.com/kgsensei/NitroTypeHack2).* :warning:
+
+If you need help feel free to join my support discord server [here](https://discord.gg/U5A3QWXZKZ).
+
 NitroType Hack for typing. ~220 WPM and ~100% Acc. Tested only on windows but  
 should work on most platforms. This was developed for educational and  
 experimental reasons only, if you want to use it for more that is your own  
