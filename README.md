@@ -1,7 +1,10 @@
 # NitroType Auto Typer
 ### By: kgsensei
 
-### :warning: *I recommend instead of using this project you use the updated, easier-to-use version [here](https://github.com/kgsensei/NitroTypeHack2).* :warning:
+# :warning: IMPORTANT MESSAGE [PLEASE READ] :warning:
+**Instead of using this version please use the new one [here](https://github.com/kgsensei/NitroTypeHack2).**  
+  
+## If you want to use this version here are the instructions:
 
 If you need help feel free to join my support discord server [here](https://discord.gg/U5A3QWXZKZ).
 
